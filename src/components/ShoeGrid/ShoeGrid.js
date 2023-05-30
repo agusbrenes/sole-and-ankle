@@ -24,11 +24,11 @@ const ShoeItem = styled(ShoeCard)`
 	flex: 1 1 100%;
 
 	@media screen and (min-width: 576px) {
-		flex-basis: calc((100% - (1 * 32px)) / 2);
+		flex-basis: calc((100%) / 3 + (1px / 10));
 	}
 
 	@media screen and (min-width: 992px) {
-		flex-basis: calc((100% - (2 * 32px)) / 3);
+		flex-basis: calc((100%) / 4 + (1px / 10));
 	}
 `;
 

@@ -5,6 +5,17 @@ import { COLORS, WEIGHTS } from "../../constants";
 import { formatPrice, pluralize, isNewShoe } from "../../utils";
 import Spacer from "../Spacer";
 
+const TAG_DATA = {
+	"on-sale": {
+		text: "Sale",
+		color: COLORS.primary,
+	},
+	"new-release": {
+		text: "Just Released!",
+		color: COLORS.secondary,
+	},
+};
+
 const ShoeCard = ({
 	slug,
 	name,
@@ -32,6 +43,8 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default'
 
+	const tagData = TAG_DATA[variant];
+
 	return (
 		<Link href={`/shoe/${slug}`} className={className}>
 			<Wrapper>
@@ -46,17 +59,31 @@ const ShoeCard = ({
 				<Row>
 					<ColorInfo>{pluralize("Color", numOfColors)}</ColorInfo>
 				</Row>
+				{tagData && <Tag color={tagData.color}>{tagData.text}</Tag>}
 			</Wrapper>
 		</Link>
 	);
 };
+
+const Tag = styled.span`
+	position: absolute;
+	right: -4px;
+	top: 12px;
+	padding: 8px;
+	border-radius: 2px;
+	background-color: ${(props) => props.color};
+	color: ${COLORS.white};
+	font-weight: 700;
+`;
 
 const Link = styled.a`
 	text-decoration: none;
 	color: inherit;
 `;
 
-const Wrapper = styled.article``;
+const Wrapper = styled.article`
+	position: relative;
+`;
 
 const ImageWrapper = styled.div`
 	position: relative;
